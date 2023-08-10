@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0amm8x8j6yqc"]
+
+[ext_resource type="Script" path="res://scripts/weiner.gd" id="1_w4lpw"]
+
+[node name="Weiner" type="Sprite2D"]
+position = Vector2(543, 205)
+script = ExtResource("1_w4lpw")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-1, -48, -26, -24, 0, 0, 24, -24)
+
+[node name="moveTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="moveTimer" to="." method="_on_move_timer_timeout"]

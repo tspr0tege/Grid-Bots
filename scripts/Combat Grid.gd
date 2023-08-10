@@ -1,8 +1,11 @@
 extends Node2D
 
 const gridOffset = Vector2(50, 200)
+const playerNode = preload("res://entities/player.tscn")
+
 var modV = ["aa", "cc", "ee"]
 var combatGrid = []
+var Player
 
 func _ready():
 	# Build the grid tiles
@@ -30,10 +33,10 @@ func _ready():
 		combatGrid.push_back(newRow)
 		
 	#Instantiate Player
-	const Player = preload("res://entities/player.tscn")
-	var newPlayer = Player.instantiate()
-	newPlayer.name = "Player"
-	combatGrid[1][0].get_node("tenant").add_child(newPlayer)
+#	const Player = preload("res://entities/player.tscn")
+	Player = playerNode.instantiate()
+	Player.name = "Player"
+	combatGrid[1][0].get_node("tenant").add_child(Player)
 	
 	#Instantiate Weiner
 	const Weiner = preload("res://entities/weiner.tscn")
@@ -42,24 +45,35 @@ func _ready():
 	newEnemy.coords = Vector2(5, 0)
 	combatGrid[5][0].get_node("tenant").add_child(newEnemy)
 
-func callCombatGrid(grid_space):
-	var target = get_tree().get_root().find_child("Player", true, false)
-#	print(target)
+func handleClick(grid_space):
+#	var target = get_tree().get_root().find_child("Player", true, false)
 #	get_tree().get_root().print_tree_pretty()
-	if grid_space.red_or_blue == "red":
-		print("Player wishes to fire")
-	else:
-		var prevCoords = target.get_node("../../").name.split("")
-		var targetCoords = grid_space.name.split("")
-		var changeInX = int(targetCoords[1]) - int(prevCoords[1])
-		var changeInY = int(targetCoords[2]) - int(prevCoords[2])
-		if changeInX == 0 && changeInY == 0: return
+	var splitFrom = Player.get_node("../../").name.split("")
+	var curCoords = Vector2(int(splitFrom[1]), int(splitFrom[2]))
+	
+	if grid_space.red_or_blue == "red": #SHOOT
+		# TODO: animate firing
+		Player.shoot()
+		for i in range(curCoords.x + 1, combatGrid.size()):
+			if combatGrid[i][curCoords.y].get_node("tenant").get_child_count() > 0:
+				var target = combatGrid[i][curCoords.y].get_node("tenant").get_child(0)
+				target.get_node("hpNode").changeHP(-10)
+				break
+	else: #MOVE
+		var splitTo = grid_space.name.split("")
+		var targetCoords = Vector2(int(splitTo[1]), int(splitTo[2]))
+		
+		var changeInX = targetCoords.x - curCoords.x
+		var changeInY = targetCoords.y - curCoords.y
+		
+		if changeInX == 0 && changeInY == 0: return # prevent div by 0 when same tile clicked
+		
 		if abs(changeInY) > abs(changeInX):
 			changeInY /= abs(changeInY)
-			moveEntity(target, int(prevCoords[1]), int(prevCoords[2]) + changeInY)
+			moveEntity(Player, curCoords.x, curCoords.y + changeInY)
 		else:
 			changeInX /= abs(changeInX)
-			moveEntity(target, int(prevCoords[1]) + changeInX, int(prevCoords[2]))
+			moveEntity(Player, curCoords.x + changeInX, curCoords.y)
 			
 		
 func moveEntity(entity, x, y):

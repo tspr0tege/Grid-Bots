@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://85kgocmp48x1"]
+
+[ext_resource type="Script" path="res://scripts/hpNode.gd" id="1_58qm1"]
+
+[node name="hpNode" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_58qm1")
+hp = 100
+
+[node name="hpDisplay" type="Label" parent="."]
+layout_mode = 0
+offset_left = -39.0
+offset_right = 40.0
+offset_bottom = 26.0
+theme_override_font_sizes/font_size = 25
+text = "666"
+horizontal_alignment = 1

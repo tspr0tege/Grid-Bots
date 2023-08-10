@@ -6,6 +6,6 @@ var red_or_blue
 
 func _on_button_button_down():
 	if (combatGrid):
-		combatGrid.callCombatGrid(self)
+		combatGrid.handleClick(self)
 	else:
 		print(self.name)

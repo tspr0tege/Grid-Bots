@@ -1,16 +1,68 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0amm8x8j6yqc"]
+[gd_scene load_steps=8 format=3 uid="uid://d0amm8x8j6yqc"]
 
-[ext_resource type="Script" path="res://scripts/weiner.gd" id="1_w4lpw"]
+[ext_resource type="Script" path="res://scripts/weiner.gd" id="1_6jbu3"]
+[ext_resource type="PackedScene" uid="uid://85kgocmp48x1" path="res://components/hp_node.tscn" id="2_j4cla"]
+[ext_resource type="AudioStream" uid="uid://cmws1x7vm5vdj" path="res://sfx/hit.wav" id="3_8tqvy"]
+[ext_resource type="PackedScene" uid="uid://dt1pysrghdyu0" path="res://components/audio_queue.tscn" id="3_pguxj"]
+
+[sub_resource type="Animation" id="Animation_mcusn"]
+resource_name = "flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_12pyj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fcgvi"]
+_data = {
+"RESET": SubResource("Animation_12pyj"),
+"flash": SubResource("Animation_mcusn")
+}
 
 [node name="Weiner" type="Sprite2D"]
-position = Vector2(543, 205)
-script = ExtResource("1_w4lpw")
+script = ExtResource("1_6jbu3")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-1, -48, -26, -24, 0, 0, 24, -24)
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Polygon2D"]
+speed_scale = 2.0
+libraries = {
+"": SubResource("AnimationLibrary_fcgvi")
+}
+
 [node name="moveTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="hpNode" parent="." instance=ExtResource("2_j4cla")]
+
+[node name="audioQueue" parent="." instance=ExtResource("3_pguxj")]
+
+[node name="hit" type="AudioStreamPlayer" parent="audioQueue"]
+stream = ExtResource("3_8tqvy")
 
 [connection signal="timeout" from="moveTimer" to="." method="_on_move_timer_timeout"]

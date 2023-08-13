@@ -8,8 +8,10 @@ var combatGrid = []
 var Player
 
 func _ready():
+	get_tree().root.get_node("Arena").COMBAT_GRID = self
+	
 	# Build the grid tiles
-	const GridTile = preload("res://grid-tile.tscn")
+	const GridTile = preload("res://scenes/grid-tile.tscn")
 	
 	for x in range(6):
 		var newRow = []
@@ -44,6 +46,8 @@ func _ready():
 	newEnemy.combatGrid = self
 	newEnemy.coords = Vector2(5, 0)
 	combatGrid[5][0].get_node("tenant").add_child(newEnemy)
+	
+#	self.scale = get_viewport_rect().size / Vector2(640, 360)
 
 func handleClick(grid_space):
 #	var target = get_tree().get_root().find_child("Player", true, false)

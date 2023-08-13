@@ -1,0 +1,80 @@
+[gd_scene load_steps=2 format=3 uid="uid://cya3xtqw2mvdg"]
+
+[ext_resource type="Script" path="res://scripts/combat_ui.gd" id="1_8yrus"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8yrus")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -80.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(0.741176, 0.741176, 0.741176, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+icon_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/MarginContainer/VBoxContainer/Button"]
+centered = false
+
+[node name="Button2" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/MarginContainer/VBoxContainer/Button2"]
+centered = false
+
+[node name="Button3" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/MarginContainer/VBoxContainer/Button3"]
+centered = false
+
+[node name="Button4" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/MarginContainer/VBoxContainer/Button4"]
+centered = false
+
+[node name="Button5" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/MarginContainer/VBoxContainer/Button5"]
+centered = false
+
+[connection signal="button_down" from="MarginContainer/MarginContainer/VBoxContainer/Button" to="." method="_on_program_button_down" binds= [1]]
+[connection signal="button_down" from="MarginContainer/MarginContainer/VBoxContainer/Button2" to="." method="_on_program_button_down" binds= [2]]
+[connection signal="button_down" from="MarginContainer/MarginContainer/VBoxContainer/Button3" to="." method="_on_program_button_down" binds= [3]]
+[connection signal="button_down" from="MarginContainer/MarginContainer/VBoxContainer/Button4" to="." method="_on_program_button_down" binds= [4]]
+[connection signal="button_down" from="MarginContainer/MarginContainer/VBoxContainer/Button5" to="." method="_on_program_button_down" binds= [5]]

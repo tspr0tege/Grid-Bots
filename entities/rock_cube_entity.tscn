@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnhanptnb478o"]
+
+[ext_resource type="Script" path="res://scripts/rock_cube_entity.gd" id="1_mxenc"]
+[ext_resource type="PackedScene" uid="uid://85kgocmp48x1" path="res://components/hp_node.tscn" id="2_o4f1p"]
+
+[node name="Rock Cube" type="Node2D"]
+script = ExtResource("1_mxenc")
+
+[node name="hpNode" parent="." instance=ExtResource("2_o4f1p")]
+hp = 10
+
+[node name="Node2D" type="Node2D" parent="."]
+scale = Vector2(2, 2)
+
+[node name="Polygon2D" type="Polygon2D" parent="Node2D"]
+color = Color(0.603922, 0.603922, 0.603922, 1)
+polygon = PackedVector2Array(-18, 0, 17, 0, 17, -23, -18, -23)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Node2D"]
+position = Vector2(0, -27)
+color = Color(0.745098, 0.745098, 0.745098, 1)
+polygon = PackedVector2Array(-18, 4, 17, 4, 13, -4, -15, -4)

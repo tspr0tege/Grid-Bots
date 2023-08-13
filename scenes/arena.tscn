@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://difw43todamqj"]
+
+[ext_resource type="PackedScene" uid="uid://bpj3le53dhrtg" path="res://scenes/combat_grid.tscn" id="1_3gryl"]
+[ext_resource type="Script" path="res://scripts/arena.gd" id="1_h85yj"]
+[ext_resource type="PackedScene" uid="uid://cya3xtqw2mvdg" path="res://scenes/combat_ui.tscn" id="2_02l3n"]
+[ext_resource type="Script" path="res://scripts/Camera2D.gd" id="2_8ssth"]
+
+[node name="Arena" type="Node2D"]
+script = ExtResource("1_h85yj")
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Control2"]
+layout_mode = 0
+offset_right = 560.0
+offset_bottom = 360.0
+
+[node name="SubViewport" type="SubViewport" parent="Control2/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(560, 360)
+render_target_update_mode = 4
+
+[node name="Combat Grid" parent="Control2/SubViewportContainer/SubViewport" instance=ExtResource("1_3gryl")]
+
+[node name="Camera2D" type="Camera2D" parent="Control2/SubViewportContainer/SubViewport"]
+offset = Vector2(320, 180)
+script = ExtResource("2_8ssth")
+
+[node name="UI" parent="Control2" instance=ExtResource("2_02l3n")]
+layout_mode = 1
+offset_left = 640.0
+offset_top = 180.0
+offset_right = 640.0
+offset_bottom = 180.0

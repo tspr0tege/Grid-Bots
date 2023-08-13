@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdkjjjn78j0ri"]
+
+[ext_resource type="Script" path="res://programs/rock_cube/rock_cube.gd" id="1_44yfw"]
+
+[node name="rock_cube" type="Node"]
+script = ExtResource("1_44yfw")

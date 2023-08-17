@@ -1,9 +1,9 @@
-extends Sprite2D
+extends CharacterBody2D
 
 func shoot():
 	$audioQueue.playSound()
-	$shotParticles.restart()
-	$shotParticles.set_emitting(true)
+#	$shotParticles.restart()
+#	$shotParticles.set_emitting(true)
 
 func takeDamage():
 	pass

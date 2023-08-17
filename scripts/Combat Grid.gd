@@ -44,8 +44,8 @@ func _ready():
 	const Weiner = preload("res://entities/weiner.tscn")
 	var newEnemy = Weiner.instantiate()
 	newEnemy.combatGrid = self
-	newEnemy.coords = Vector2(5, 0)
-	combatGrid[5][0].get_node("tenant").add_child(newEnemy)
+#	newEnemy.coords = Vector2(3, 0)
+	combatGrid[3][0].get_node("tenant").add_child(newEnemy)
 	
 #	self.scale = get_viewport_rect().size / Vector2(640, 360)
 

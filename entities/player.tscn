@@ -1,55 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://ha2pas507whl"]
+[gd_scene load_steps=5 format=3 uid="uid://ha2pas507whl"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_45cd8"]
-[ext_resource type="PackedScene" uid="uid://85kgocmp48x1" path="res://components/hp_node.tscn" id="2_cnbln"]
-[ext_resource type="PackedScene" uid="uid://dt1pysrghdyu0" path="res://components/audio_queue.tscn" id="3_hph4l"]
-[ext_resource type="AudioStream" uid="uid://dpspk6fk8bda2" path="res://sfx/pew.wav" id="4_ui7wv"]
-[ext_resource type="Texture2D" uid="uid://cwqnp7ldoixr4" path="res://particles/spark.png" id="5_rm6pi"]
+[ext_resource type="PackedScene" uid="uid://dt1pysrghdyu0" path="res://components/audio_queue.tscn" id="2_eqx4j"]
+[ext_resource type="AudioStream" uid="uid://dpspk6fk8bda2" path="res://sfx/pew.wav" id="3_51ecc"]
+[ext_resource type="PackedScene" uid="uid://85kgocmp48x1" path="res://components/hp_node.tscn" id="4_tghp0"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5grmd"]
-blend_mode = 1
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_78ve8"]
-particle_flag_rotate_y = true
-particle_flag_disable_z = true
-direction = Vector3(8, -1, 0)
-spread = 30.16
-gravity = Vector3(0, 100, 0)
-initial_velocity_min = 250.0
-initial_velocity_max = 300.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-color = Color(0.960784, 0.815686, 0, 1)
-
-[node name="Player" type="Sprite2D"]
+[node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_45cd8")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(-21, -60, 22, -60, 22, 0, -21, 0)
+position = Vector2(1.90735e-06, 0)
+scale = Vector2(1, 2.17778)
+polygon = PackedVector2Array(-27, -45, -27, 0, 26, 0, 26, -45)
 
-[node name="hpNode" parent="." instance=ExtResource("2_cnbln")]
-hp = 200
+[node name="audioQueue" parent="." instance=ExtResource("2_eqx4j")]
 
-[node name="audioQueue" parent="." instance=ExtResource("3_hph4l")]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="audioQueue"]
+stream = ExtResource("3_51ecc")
 
-[node name="pew" type="AudioStreamPlayer" parent="audioQueue"]
-stream = ExtResource("4_ui7wv")
-volume_db = -6.0
-
-[node name="shotParticles" type="GPUParticles2D" parent="."]
-material = SubResource("CanvasItemMaterial_5grmd")
-position = Vector2(20, -50)
-emitting = false
-amount = 5
-process_material = SubResource("ParticleProcessMaterial_78ve8")
-texture = ExtResource("5_rm6pi")
-lifetime = 0.15
-one_shot = true
-explosiveness = 1.0
-randomness = 1.0
-visibility_rect = Rect2(-100, -100, 100, 100)
-local_coords = true
-trail_enabled = true
-trail_lifetime = 0.01
-trail_sections = 2
-trail_section_subdivisions = 1
+[node name="hpNode" parent="." instance=ExtResource("4_tghp0")]

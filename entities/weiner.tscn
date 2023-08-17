@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://d0amm8x8j6yqc"]
+[gd_scene load_steps=9 format=3 uid="uid://d0amm8x8j6yqc"]
 
 [ext_resource type="Script" path="res://scripts/weiner.gd" id="1_6jbu3"]
 [ext_resource type="PackedScene" uid="uid://85kgocmp48x1" path="res://components/hp_node.tscn" id="2_j4cla"]
 [ext_resource type="AudioStream" uid="uid://cmws1x7vm5vdj" path="res://sfx/hit.wav" id="3_8tqvy"]
 [ext_resource type="PackedScene" uid="uid://dt1pysrghdyu0" path="res://components/audio_queue.tscn" id="3_pguxj"]
+[ext_resource type="PackedScene" uid="uid://0oms8xtq28wn" path="res://components/mover.tscn" id="5_2hccl"]
 
 [sub_resource type="Animation" id="Animation_12pyj"]
 length = 0.001
@@ -42,7 +43,7 @@ _data = {
 "flash": SubResource("Animation_mcusn")
 }
 
-[node name="Weiner" type="Sprite2D"]
+[node name="Weiner2" type="CharacterBody2D"]
 script = ExtResource("1_6jbu3")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
@@ -65,5 +66,7 @@ autostart = true
 [node name="hit" type="AudioStreamPlayer" parent="audioQueue"]
 stream = ExtResource("3_8tqvy")
 volume_db = -6.0
+
+[node name="mover" parent="." instance=ExtResource("5_2hccl")]
 
 [connection signal="timeout" from="moveTimer" to="." method="_on_move_timer_timeout"]

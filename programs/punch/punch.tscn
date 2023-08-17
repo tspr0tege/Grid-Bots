@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://v53c3s3qmi4b"]
+
+[ext_resource type="Script" path="res://programs/punch/punch.gd" id="1_qlctf"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_qlctf")
+
+[node name="polygon" type="Polygon2D" parent="."]
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(-24, -24, 24, -24, 24, 23, -24, 23)

@@ -6,9 +6,11 @@ const playerNode = preload("res://entities/player.tscn")
 var modV = ["aa", "cc", "ee"]
 var combatGrid = []
 var Player
+var ARENA
 
 func _ready():
-	get_tree().root.get_node("Arena").COMBAT_GRID = self
+	ARENA = get_tree().root.get_node("Arena")
+	ARENA.COMBAT_GRID = self
 	
 	# Build the grid tiles
 	const GridTile = preload("res://scenes/grid-tile.tscn")
@@ -32,6 +34,7 @@ func _ready():
 				
 			add_child(newGridTile)
 			newRow.push_back(newGridTile)
+			
 		combatGrid.push_back(newRow)
 		
 	#Instantiate Player
@@ -50,10 +53,7 @@ func _ready():
 #	self.scale = get_viewport_rect().size / Vector2(640, 360)
 
 func handleClick(grid_space):
-#	var target = get_tree().get_root().find_child("Player", true, false)
-#	get_tree().get_root().print_tree_pretty()
-	var splitFrom = Player.get_node("../../").name.split("")
-	var curCoords = Vector2(int(splitFrom[1]), int(splitFrom[2]))
+	var curCoords = ARENA.getCoords(Player)
 	
 	if grid_space.red_or_blue == "red": #SHOOT
 		# TODO: animate firing
@@ -64,20 +64,7 @@ func handleClick(grid_space):
 				target.get_node("hpNode").changeHP(-10)
 				break
 	else: #MOVE
-		var splitTo = grid_space.name.split("")
-		var targetCoords = Vector2(int(splitTo[1]), int(splitTo[2]))
-		
-		var changeInX = targetCoords.x - curCoords.x
-		var changeInY = targetCoords.y - curCoords.y
-		
-		if changeInX == 0 && changeInY == 0: return # prevent div by 0 when same tile clicked
-		
-		if abs(changeInY) > abs(changeInX):
-			changeInY /= abs(changeInY)
-			moveEntity(Player, curCoords.x, curCoords.y + changeInY)
-		else:
-			changeInX /= abs(changeInX)
-			moveEntity(Player, curCoords.x + changeInX, curCoords.y)
+		Player.get_node("mover").moveTo(ARENA.getCoords(grid_space.get_child(0)))
 			
 		
 func moveEntity(entity, x, y):

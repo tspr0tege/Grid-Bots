@@ -19,7 +19,6 @@ func executeProgram(Arena):
 		timer.one_shot = true
 		timer.set_wait_time(0.1)
 		timer.connect("timeout", func ():
-			print("Timer function running")
 			newCube.get_node("mover").runCollision(Vector2(pos.x+1, pos.y))
 		)
 		newCube.add_child(timer)

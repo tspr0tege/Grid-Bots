@@ -7,7 +7,6 @@ func _ready():
 	#request programs
 	var btnNumber = 0
 	var newHand = await ARENA.populateHand()
-	print("Arena hand length: " + str(ARENA.hand.size()))
 	for card in newHand:
 		buttons[btnNumber].get_node("Sprite2D").set_texture(load(card.progIcon))
 		btnNumber +=1

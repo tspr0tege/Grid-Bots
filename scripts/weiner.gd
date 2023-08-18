@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var aniPlayer = get_node("Polygon2D/AnimationPlayer")
 @onready var audioQueue = get_node("audioQueue")
 var combatGrid
+var red_or_blue = "red"
 #var coords : Vector2
 var dir = Vector2(0, 1)
 

@@ -5,6 +5,7 @@ var COMBAT_GRID
 var deck = [
 	preload("res://programs/rock_cube/rock_cube.tscn"),
 	preload("res://programs/punch/punch.tscn"),
+	preload("res://programs/convert_tiles/convert_tiles.tscn"),
 ]
 var hand = []
 var nextProgramFromDeck = 5
@@ -14,8 +15,12 @@ func _ready():
 	pass
 	
 func getCoords(entity):
-	var parentTile = entity.find_parent("G*")
-	var nameArray = parentTile.name.split("")
+	var nameArray
+	if entity.name.length() == 3 and entity.name.begins_with("G"):
+		nameArray = entity.name.split("")
+	else:
+		var parentTile = entity.find_parent("G*")
+		nameArray = parentTile.name.split("")
 	
 	return 	Vector2(int(nameArray[1]), int(nameArray[2]))
 	

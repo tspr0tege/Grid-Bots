@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://uuj5oro11be0"]
+
+[ext_resource type="Script" path="res://programs/convert_tiles/convert_tiles.gd" id="1_v6k5t"]
+
+[node name="Convert Tiles" type="Node"]
+script = ExtResource("1_v6k5t")

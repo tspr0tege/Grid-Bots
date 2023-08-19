@@ -1,13 +1,10 @@
 extends Node
 
-var ARENA
+@onready var ARENA = get_tree().root.get_node("Arena")
 @onready var ENTITY = get_parent()
 @export var canCohabit = false
 @export var teleportEnabled = false
 @export var diagonalEnabled = false
-
-func _ready():
-	ARENA = get_tree().root.get_node("Arena")
 
 func moveTo(coords: Vector2):
 	# if teleport enabled, jump to spot
@@ -48,7 +45,7 @@ func wrongColor(pos):
 func validTile(pos):
 	if pos.x < 0 or pos.x >= 6: return false #invalid x-axis movement
 	if pos.y < 0 or pos.y >= 3: return false #invalid y-axis movement
-	if ENTITY.name == "Player" and wrongColor(pos): return false
+	if ENTITY.get("red_or_blue") and wrongColor(pos): return false
 	return true
 	
 func tileOccupied(pos):

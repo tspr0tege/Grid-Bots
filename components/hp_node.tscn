@@ -8,7 +8,6 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_58qm1")
-hp = 100
 
 [node name="hpDisplay" type="Label" parent="."]
 layout_mode = 0

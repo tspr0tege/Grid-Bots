@@ -6,6 +6,7 @@ var deck = [
 	preload("res://programs/rock_cube/rock_cube.tscn"),
 	preload("res://programs/punch/punch.tscn"),
 	preload("res://programs/convert_tiles/convert_tiles.tscn"),
+	preload("res://programs/heal_10/heal_10.tscn"),
 ]
 var hand = []
 var nextProgramFromDeck = 5

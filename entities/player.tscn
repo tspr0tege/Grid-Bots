@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_45cd8"]
 [ext_resource type="PackedScene" uid="uid://dt1pysrghdyu0" path="res://components/audio_queue.tscn" id="2_eqx4j"]
-[ext_resource type="AudioStream" uid="uid://dpspk6fk8bda2" path="res://sfx/pew.wav" id="3_51ecc"]
+[ext_resource type="AudioStream" uid="uid://dpspk6fk8bda2" path="res://sfx/laser.wav" id="3_k6xu2"]
 [ext_resource type="PackedScene" uid="uid://85kgocmp48x1" path="res://components/hp_node.tscn" id="4_tghp0"]
 [ext_resource type="PackedScene" uid="uid://0oms8xtq28wn" path="res://components/mover.tscn" id="5_unnep"]
 
@@ -17,8 +17,10 @@ polygon = PackedVector2Array(-27, -45, -27, 0, 26, 0, 26, -45)
 [node name="audioQueue" parent="." instance=ExtResource("2_eqx4j")]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="audioQueue"]
-stream = ExtResource("3_51ecc")
+stream = ExtResource("3_k6xu2")
+volume_db = -6.0
 
 [node name="hpNode" parent="." instance=ExtResource("4_tghp0")]
+maxHP = 200
 
 [node name="mover" parent="." instance=ExtResource("5_unnep")]

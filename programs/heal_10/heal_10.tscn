@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://buhyxjef211tr"]
+
+[ext_resource type="Script" path="res://programs/heal_10/heal_10.gd" id="1_hpded"]
+[ext_resource type="PackedScene" uid="uid://dt1pysrghdyu0" path="res://components/audio_queue.tscn" id="2_c4nrs"]
+[ext_resource type="AudioStream" uid="uid://dictw6tfp1kgc" path="res://sfx/heal.wav" id="3_74kas"]
+
+[node name="heal_10" type="Node"]
+script = ExtResource("1_hpded")
+
+[node name="audioQueue" parent="." instance=ExtResource("2_c4nrs")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="audioQueue"]
+stream = ExtResource("3_74kas")
+volume_db = -6.0

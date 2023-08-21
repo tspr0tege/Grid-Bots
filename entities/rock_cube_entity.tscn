@@ -8,6 +8,7 @@
 script = ExtResource("1_mxenc")
 
 [node name="hpNode" parent="." instance=ExtResource("2_gs4ne")]
+maxHP = 100
 
 [node name="mover" parent="." instance=ExtResource("3_smumf")]
 canCohabit = true

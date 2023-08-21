@@ -46,7 +46,7 @@ func _ready():
 	#Instantiate Weiner
 	const Weiner = preload("res://entities/weiner.tscn")
 	var newEnemy = Weiner.instantiate()
-	newEnemy.combatGrid = self
+	newEnemy.COMBAT_GRID = self
 #	newEnemy.coords = Vector2(3, 0)
 	combatGrid[3][0].get_node("tenant").add_child(newEnemy)
 	
